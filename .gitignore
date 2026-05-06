@@ -1,0 +1,8 @@
+node_modules/
+dist/
+dist-fixed/
+dist-release/
+dist-release-clean/
+dist-public-clean/
+*.log
+npm-debug.log*

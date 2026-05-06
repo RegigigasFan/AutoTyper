@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clean Auto Typer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="top-bar">
+        <h1>Clean Auto Typer</h1>
+        <p class="subtitle">
+          Types only into the currently focused window. Always verify focus before starting.
+        </p>
+      </header>
+
+      <main class="main-grid">
+        <section class="panel editor-panel">
+          <div class="panel-title-row">
+            <h2>Script Editor</h2>
+            <span class="muted">Supports {ENTER} {TAB} {BACKSPACE} {ESC} {CTRL+C} {CTRL+V}</span>
+          </div>
+          <textarea
+            id="scriptInput"
+            spellcheck="false"
+            placeholder="Type or paste text here. Example: Make me a sandwich{ENTER}Now with chips."
+          ></textarea>
+
+          <div class="preview-wrap">
+            <div class="panel-title-row">
+              <h3>Preview (exact script content)</h3>
+            </div>
+            <pre id="scriptPreview"></pre>
+          </div>
+
+          <div class="preview-wrap">
+            <div class="panel-title-row">
+              <h3>Test Mode Output</h3>
+            </div>
+            <pre id="testOutput"></pre>
+          </div>
+        </section>
+
+        <section class="panel settings-panel">
+          <h2>Settings</h2>
+
+          <div class="setting-group">
+            <label for="modeSelect">Mode</label>
+            <select id="modeSelect">
+              <option value="active">Active Window Typing</option>
+              <option value="test">Test Mode (Internal Preview)</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label for="minTypingDelayInput">Minimum Typing Delay (ms)</label>
+            <input id="minTypingDelayInput" type="number" min="1" max="1000" value="25" />
+          </div>
+
+          <div class="setting-group">
+            <label for="maxTypingDelayInput">Maximum Typing Delay (ms)</label>
+            <input id="maxTypingDelayInput" type="number" min="1" max="1000" value="75" />
+          </div>
+
+          <div class="setting-group">
+            <label for="pauseChanceSlider">Pause Interval Chance: <span id="pauseChanceValue">4%</span></label>
+            <input id="pauseChanceSlider" type="range" min="0" max="100" value="4" />
+          </div>
+
+          <div class="setting-group">
+            <label for="minPauseTimeInput">Minimum Pause Time (ms)</label>
+            <input id="minPauseTimeInput" type="number" min="0" max="5000" value="200" />
+          </div>
+
+          <div class="setting-group">
+            <label for="maxPauseTimeInput">Maximum Pause Time (ms)</label>
+            <input id="maxPauseTimeInput" type="number" min="0" max="5000" value="800" />
+          </div>
+
+          <div class="setting-group">
+            <label for="accuracySlider">Accuracy: <span id="accuracyValue">100%</span></label>
+            <input id="accuracySlider" type="range" min="70" max="100" value="100" />
+          </div>
+
+          <div class="setting-group">
+            <label for="countdownSelect">Safety Countdown</label>
+            <select id="countdownSelect">
+              <option value="0">0 seconds</option>
+              <option value="1">1 second</option>
+              <option value="2">2 seconds</option>
+              <option value="3" selected>3 seconds</option>
+              <option value="4">4 seconds</option>
+              <option value="5">5 seconds</option>
+            </select>
+          </div>
+
+          <div class="setting-group checkbox-group">
+            <label>
+              <input id="autoCorrectionCheckbox" type="checkbox" />
+              Auto-correction (typo + pause + backspace + fix)
+            </label>
+            <label>
+              <input id="compatibilityModeCheckbox" type="checkbox" checked />
+              Compatibility mode (clipboard-paste typing for browser editors)
+            </label>
+          </div>
+
+          <div class="setting-group">
+            <label for="hotkeyInput">Global Start/Stop Hotkey</label>
+            <input
+              id="hotkeyInput"
+              type="text"
+              value="CommandOrControl+Shift+S"
+              placeholder="CommandOrControl+Shift+S"
+            />
+            <button id="applyHotkeyButton" class="secondary">Apply Hotkey</button>
+          </div>
+
+          <div class="setting-group">
+            <label for="presetNameInput">Preset Name</label>
+            <input id="presetNameInput" type="text" placeholder="My typing preset" />
+          </div>
+
+          <div class="setting-group">
+            <label for="presetSelect">Saved Presets</label>
+            <select id="presetSelect"></select>
+          </div>
+
+          <div id="statusCard" class="status-card">Idle</div>
+        </section>
+      </main>
+
+      <footer class="bottom-bar">
+        <button id="startButton" class="primary">Start</button>
+        <button id="stopButton" class="danger">Stop</button>
+        <button id="savePresetButton" class="secondary">Save Preset</button>
+        <button id="loadPresetButton" class="secondary">Load Preset</button>
+        <button id="deletePresetButton" class="secondary">Delete Preset</button>
+      </footer>
+    </div>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "name": "clean-auto-typer",
+  "version": "1.0.0",
+  "description": "Clean Windows desktop auto-typing app built with Electron",
+  "main": "src/main/main.js",
+  "author": "Ryder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RegigigasFan/AutoTyper.git"
+  },
+  "homepage": "https://github.com/RegigigasFan/AutoTyper",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "build": "electron-builder --win"
+  },
+  "dependencies": {
+    "@nut-tree-fork/nut-js": "^4.2.4"
+  },
+  "devDependencies": {
+    "electron": "^35.2.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.cleanautotyper.app",
+    "productName": "Clean Auto Typer",
+    "directories": {
+      "buildResources": "assets"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "artifactName": "${productName}-Setup-${version}.${ext}",
+      "signAndEditExecutable": false
+    }
+  }
+}
