@@ -16,16 +16,6 @@ npm.cmd install
 npm.cmd start
 ```
 
-## Build
-
-```powershell
-npm.cmd run build -- --dir
-```
-
-Output:
-
-`dist\win-unpacked\Clean Auto Typer.exe`
-
 ## HUD Overview
 
 ### Left Panel
